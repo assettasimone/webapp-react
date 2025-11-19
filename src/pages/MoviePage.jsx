@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import axios from "axios"
 import { useParams } from "react-router"
+import LoaderContext from "../Contexts/LoaderContext"
 
 export default function MoviePage() {
 
@@ -9,11 +10,11 @@ export default function MoviePage() {
     const API_URL = `http://localhost:3000/api/movies/${id}`
 
     const [movie, setMovie] = useState({})
-
+    const { setLoading } = useContext(LoaderContext)
 
 
     useEffect(() => {
-
+        setLoading(true)
         axios.get(API_URL)
             .then(res => {
                 setMovie(res.data)
@@ -21,6 +22,10 @@ export default function MoviePage() {
             .catch(err => {
                 console.log(err.message)
             })
+            .then(
+                setLoading(false)
+            )
+
 
     }, [])
 

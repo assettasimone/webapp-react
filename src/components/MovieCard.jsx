@@ -1,7 +1,7 @@
 import { Link } from "react-router"
 
 export default function MovieCard({ movie }) {
-
+    const vote_avg = Math.floor(movie.reviews_avg)
 
     return (
 
@@ -12,6 +12,7 @@ export default function MovieCard({ movie }) {
                     alt={movie.title} />
             </figure>
             <div className="card-body opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                <span className="badge badge-xs badge-warning">{vote_avg} {'★'.repeat(vote_avg)}{'☆'.repeat(5 - vote_avg)}</span>
                 <h2 className="card-title">{movie.title}</h2>
                 <p>{movie.abstract}</p>
                 <div className="card-actions ">

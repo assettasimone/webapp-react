@@ -5,7 +5,7 @@ export default function Header() {
 
   const menu = [
     { id: 1, name: 'home', link: '/' },
-    { id: 2, name: 'movies', link: '/movies/' }
+    /* { id: 2, name: 'movies', link: '/movies/' } */
   ]
 
 

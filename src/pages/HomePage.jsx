@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import axios from "axios"
 import MovieCard from "../components/MovieCard"
+import LoaderContext from "../Contexts/LoaderContext"
 
 export default function HomePage() {
 
     const API_URL = 'http://localhost:3000/api/movies'
-
     const [movies, setMovies] = useState([])
+    const { setLoading } = useContext(LoaderContext)
+
 
     useEffect(() => {
 
+        setLoading(true)
         axios.get(API_URL)
             .then(res => {
                 console.log(res);
@@ -18,6 +21,9 @@ export default function HomePage() {
             .catch(err => {
                 console.log(err.message)
             })
+            .then(
+                setLoading(false)
+            )
 
     }, [])
 
